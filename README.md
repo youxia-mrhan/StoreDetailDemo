@@ -10,8 +10,7 @@
 <img src="02.gif" alt="02" width="350">
 
 ### 3. 通过点击 或 拖动 展开收缩公告
-<img src="03.gif" alt="03" width="350">
-<img src="07.png" alt="07" width="350">
+<img src="03.gif" alt="03" width="350"><img src="07.png" alt="07" width="350">
 
 ### 4. 公告抖动动画
 <img src="04.gif" alt="04" width="350">
