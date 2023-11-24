@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.storedetaildemo.R;
+import com.example.storedetaildemo.behavior.StoreDetailBehavior;
 import com.example.storedetaildemo.databinding.WidgetDetailBarHoBinding;
 
 /**
@@ -27,6 +28,12 @@ public class StoreDetailBarHo extends FrameLayout {
     private WidgetDetailBarHoBinding binding;
 
     private AccelerateDecelerateInterpolator interpolator;
+
+    public StoreDetailBehavior storeDetailBehavior;
+
+    public void setStoreDetailBehavior(StoreDetailBehavior storeDetailBehavior) {
+        this.storeDetailBehavior = storeDetailBehavior;
+    }
 
     private float offset;
 
@@ -117,4 +124,10 @@ public class StoreDetailBarHo extends FrameLayout {
         return drawable;
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        // 重置
+        updateBarColor(-storeDetailBehavior.getPagerView2TopOffsetMaxDistance(), storeDetailBehavior.getPagerView2TopOffsetMaxDistance());
+    }
 }

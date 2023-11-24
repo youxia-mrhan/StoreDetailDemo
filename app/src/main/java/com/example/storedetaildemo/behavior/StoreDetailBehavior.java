@@ -151,6 +151,7 @@ public class StoreDetailBehavior extends CoordinatorLayout.Behavior<StoreDetailP
                 slideAnnouncementY = App.AppStatusBarHeight + storeDetailBarView.getHeight() + announcementContainer.getTop();
 
                 storeDetailCartView.setStoreDetailBehavior(StoreDetailBehavior.this);
+                storeDetailBarView.setStoreDetailBehavior(StoreDetailBehavior.this);
             }
         });
         return super.onLayoutChild(parent, child, layoutDirection);
