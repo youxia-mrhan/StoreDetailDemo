@@ -16,7 +16,7 @@
 
 
 ### 3. 通过点击 或 拖动 展开收缩公告
-<img src="03.gif" alt="03" width="350"><span width="100"/><img src="07.png" alt="07" width="350">
+<img src="03.gif" alt="03" width="350"><span width="100" height="10"/><img src="07.png" alt="07" width="350">
 
 
 
