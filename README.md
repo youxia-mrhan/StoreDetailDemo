@@ -1,7 +1,7 @@
 # StoreDetailDemo
 
 ### 仿 美图 / 饿了么，店铺详情页功能
-<img src="06.gif" alt="06" style="zoom:50%;>
+<img src="06.gif" alt="01" style="zoom:50%">
 
 ### 1. 左右RecyclerView 联动
 <img src="01.gif" alt="01" style="zoom:50%;>
