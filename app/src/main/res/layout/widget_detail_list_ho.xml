@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:elevation="25dp"
+    android:orientation="vertical"
+    android:outlineAmbientShadowColor="@color/color_1A000000"
+    android:outlineSpotShadowColor="@color/color_1A7B8996">
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/detail_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_EEEEEE" />
+
+    <com.example.storedetaildemo.ui.widget.MViewPager2Box
+        android:id="@+id/vp2_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/detail_tab_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none"/>
+
+    </com.example.storedetaildemo.ui.widget.MViewPager2Box>
+
+</LinearLayout>

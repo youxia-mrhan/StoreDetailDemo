@@ -1,0 +1,27 @@
+{
+  "id": 0,
+  "store_title": "1973上海老街馄炖铺",
+  "store_images": [{
+    "id": 0,
+    "image": "merchant_image01"
+  },
+    {
+      "id": 1,
+      "image": "merchant_image02"
+    },
+    {
+      "id": 2,
+      "image": "merchant_image03"
+    },
+    {
+      "id": 3,
+      "image": "merchant_image04"
+    },
+    {
+      "id": 4,
+      "image": "merchant_image02"
+    }
+  ],
+  "introduction": "",
+  "business_time": "00:00 - 24:00"
+}

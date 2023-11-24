@@ -1,14 +1,18 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.example.storedetaildemo'
     compileSdk 33
 
+    viewBinding.enabled true
+
     defaultConfig {
         applicationId "com.example.storedetaildemo"
-        minSdk 24
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -36,4 +40,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "com.google.code.gson:gson:2.10.1"
+    implementation "com.github.hackware1993:MagicIndicator:1.7.0"
+    implementation "com.google.android.flexbox:flexbox:3.0.0"
+    implementation "com.github.bumptech.glide:glide:4.16.0"
+    implementation "jp.wasabeef:glide-transformations:4.3.0"
 }

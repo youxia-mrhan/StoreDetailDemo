@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="4dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/imageViewBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/user_url"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher_background" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/user_name"
+        style="@style/Font_303133_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxWidth="150dp"
+        android:singleLine="true"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/imageViewBox"
+        app:layout_constraintTop_toTopOf="@+id/imageViewBox" />
+
+    <TextView
+        android:id="@+id/user_level"
+        android:layout_width="24dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center"
+        android:text="T"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
+        app:layout_constraintStart_toEndOf="@+id/user_name"
+        app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+    <TextView
+        android:id="@+id/release_time"
+        style="@style/Font_909399_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+    <LinearLayout
+        android:id="@+id/star_group"
+        android:layout_width="60dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/user_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_name">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/comment_content"
+        style="@style/Font_303133_13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.5"
+        android:maxLines="10"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/release_time"
+        app:layout_constraintStart_toStartOf="@+id/star_group"
+        app:layout_constraintTop_toBottomOf="@+id/star_group" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="@+id/imageViewBox"
+        app:layout_constraintTop_toBottomOf="@+id/comment_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>

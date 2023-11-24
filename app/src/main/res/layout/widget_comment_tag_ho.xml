@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_comment_tag_red_ho"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="4.5dp"
+    android:text="全部"
+    android:textColor="@color/white"
+    android:textSize="12sp" />

@@ -1,0 +1,173 @@
+{
+
+  "total": 25,
+  "product_select": [{
+    "id": 0,
+    "title": "热销",
+    "is_hot": true,
+    "is_must_order": false
+  },
+    {
+      "id": 1,
+      "title": "必点",
+      "is_hot": false,
+      "is_must_order": true
+    },
+    {
+      "id": 2,
+      "title": "进店必买",
+      "is_hot": false,
+      "is_must_order": false
+    },
+    {
+      "id": 3,
+      "title": "肉馅馄炖",
+      "is_hot": false,
+      "is_must_order": false
+    },
+    {
+      "id": 4,
+      "title": "素馅馄炖",
+      "is_hot": false,
+      "is_must_order": false
+    },
+    {
+      "id": 5,
+      "title": "浓情馄炖",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 6,
+      "title": "小菜",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 7,
+      "title": "饮品",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 8,
+      "title": "江湖川菜",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 9,
+      "title": "吃肉荤菜",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 10,
+      "title": "田园时蔬",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 11,
+      "title": "特色干锅",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 12,
+      "title": "优选套餐",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 13,
+      "title": "美味小吃",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 14,
+      "title": "营养汤羹",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 15,
+      "title": "主食米饭",
+      "is_hot": false,
+      "is_must_order": false
+    },
+    {
+      "id": 16,
+      "title": "饭后水果",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 17,
+      "title": "开元小抄",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 18,
+      "title": "招牌套餐",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 19,
+      "title": "聚餐家宴",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 20,
+      "title": "开元热销",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 21,
+      "title": "一人大菜",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 22,
+      "title": "冰凉甜品",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 23,
+      "title": "铁板炒饭",
+      "is_hot": false,
+      "is_must_order": false
+    },
+
+    {
+      "id": 24,
+      "title": "大碗汤面",
+      "is_hot": false,
+      "is_must_order": false
+    }
+  ]
+}

@@ -1,9 +1,51 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.StoreDetailDemo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+
+        <!--
+            环境阴影透明度是通过主题theme设置的：0-1
+        -->
+        <item name="android:ambientShadowAlpha">0.035</item>
+
+        <!--
+            透明导航栏后
+        -->
+        <!--
+            <item name="android:windowTranslucentNavigation">true</item>
+        -->
     </style>
 
-    <style name="Theme.StoreDetailDemo" parent="Base.Theme.StoreDetailDemo" />
+    <style name="Base.Theme.JuBaoPen" parent="AppTheme">
+        <!--    应用程序的色调    -->
+        <item name="colorPrimaryDark">@color/color_909399</item>
+
+        <!--    ToolBar底色    -->
+        <item name="colorPrimary">@color/black</item>
+
+        <!--    字体    -->
+        <item name="fontFamily">@font/round_normal</item>
+    </style>
+
+    <style name="Theme.JuBaoPen" parent="Base.Theme.JuBaoPen" />
+
+    <!--  沉浸式  -->
+    <style name="Theme.Immersive" parent="Theme.JuBaoPen">
+
+        <!--    控制状态栏背景颜色    -->
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+
+        <!--    控制图标颜色：true 图标黑色 ,false 图标白色    -->
+        <item name="android:windowLightStatusBar">false</item>
+
+    </style>
+
+    <!--    全屏    -->
+    <style name="Theme.Fullscreen" parent="Theme.JuBaoPen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

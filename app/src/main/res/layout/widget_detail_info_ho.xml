@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/store_70_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/content_card_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shape_detail_card_ho"
+            android:elevation="20dp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/color_1A7B8996"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:id="@+id/detail_store_name"
+                style="@style/Font_303133_18_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1973上海老街馄饨铺"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/store_evaluate"
+                style="@style/Font_606266_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="评价4.6"
+                app:layout_constraintStart_toStartOf="@+id/detail_store_name"
+                app:layout_constraintTop_toBottomOf="@+id/detail_store_name" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0.5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/store_evaluate"
+                app:layout_constraintStart_toEndOf="@+id/store_evaluate"
+                app:layout_constraintTop_toTopOf="@+id/store_evaluate" />
+
+            <TextView
+                android:id="@+id/sale_quantity"
+                style="@style/Font_606266_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="售出666"
+                app:layout_constraintLeft_toRightOf="@id/divider"
+                app:layout_constraintTop_toTopOf="@id/divider" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0.5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/sale_quantity"
+                app:layout_constraintStart_toEndOf="@+id/sale_quantity"
+                app:layout_constraintTop_toTopOf="@+id/sale_quantity" />
+
+            <TextView
+                android:id="@+id/store_distance"
+                style="@style/Font_606266_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="距离500m"
+                app:layout_constraintBottom_toBottomOf="@+id/divider2"
+                app:layout_constraintLeft_toRightOf="@id/divider2"
+                app:layout_constraintTop_toTopOf="@+id/divider2" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="0.5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/store_distance"
+                app:layout_constraintStart_toEndOf="@+id/store_distance"
+                app:layout_constraintTop_toTopOf="@+id/store_distance" />
+
+            <TextView
+                android:id="@+id/personal_price"
+                style="@style/Font_606266_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="人均￥24"
+                app:layout_constraintBottom_toBottomOf="@+id/divider4"
+                app:layout_constraintStart_toEndOf="@+id/divider4"
+                app:layout_constraintTop_toTopOf="@+id/divider4" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/store_evaluate" />
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/store_phone_icon" />
+
+            <TextView
+                android:id="@+id/store_address"
+                style="@style/Font_909399_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:text="浙江省杭州市下城区武林五163号132室"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider5" />
+
+            <TextView
+                android:id="@+id/store_navigation"
+                style="@style/Font_F9230A_12"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:text="导航"
+                app:layout_constraintBottom_toBottomOf="@+id/store_address"
+                app:layout_constraintStart_toEndOf="@+id/store_address"
+                app:layout_constraintTop_toTopOf="@+id/store_address" />
+
+            <ImageView
+                android:id="@+id/store_phone_icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@mipmap/store_connect"
+                app:layout_constraintEnd_toEndOf="@+id/divider5"
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/coupon_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:layout_constraintLeft_toLeftOf="@id/divider7"
+                app:layout_constraintTop_toBottomOf="@id/divider7">
+
+                <TextView
+                    style="@style/Font_FFFFFF_12"
+                    android:layout_width="150dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@mipmap/coupon_bg"
+                    android:gravity="center_vertical"
+                    android:paddingStart="44dp"
+                    android:text="满100减20" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <include
+                android:id="@+id/widget_store_announcement"
+                layout="@layout/widget_store_announcement_ho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/coupon_group"
+                app:layout_constraintTop_toBottomOf="@id/coupon_group" />
+
+            <LinearLayout
+                android:id="@+id/announcement_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:minHeight="28dp"
+                app:layout_constraintLeft_toLeftOf="@id/coupon_group"
+                app:layout_constraintTop_toBottomOf="@id/coupon_group">
+
+                <TextView
+                    android:id="@+id/announcement_content"
+                    style="@style/Font_303133_12"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="公告：本店喜迎47周年店庆，为回馈广大用备份测试测试测试测试测试测试测试测试" />
+
+                <ImageView
+                    android:id="@+id/drop_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/drop_down_gray" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/store_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="32dp"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/color_1A7B8996"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="30dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/store_70_img" />
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/other_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_card_box">
+
+        <TextView
+            android:id="@+id/bay_btn"
+            style="@style/Font_F9230A_15_bold"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/shape_detail_card_ho"
+            android:elevation="20dp"
+            android:gravity="center"
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/color_1A7B8996"
+            android:text="买单"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/limited_time_offer_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@mipmap/activity_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bay_btn">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="6dp"
+                android:src="@mipmap/discount_tag_icon" />
+
+            <TextView
+                android:id="@+id/offer_text"
+                style="@style/Font_F9230A_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="47年店庆商品享9折" />
+
+            <TextView
+                android:id="@+id/offer_time"
+                style="@style/Font_FF7272_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30天 20时 58分 24秒" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
