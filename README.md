@@ -3,6 +3,7 @@
 ### 仿 美图 / 饿了么，店铺详情页功能
 <img src="06.gif" alt="06" width="350">
 
+<div height="100"></div>
 
 
 ### 1. 左右RecyclerView 联动
