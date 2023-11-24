@@ -5,6 +5,8 @@
 
 ### 1. 左右RecyclerView 联动
 <img src="01.gif" alt="01" width="350">
+<br/>
+<br/>
 
 ### 2. 通过点击 向上偏移至最大值
 <img src="02.gif" alt="02" width="350">
