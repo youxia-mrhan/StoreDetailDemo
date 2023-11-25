@@ -1,6 +1,7 @@
 ### Android仿 美团 / 饿了么，店铺详情页功能
 * UI有所不同，但功能差不多，商品添加购物车功能 正在写，写完会提交仓库。
-
+* 页面主要由：MagicIndicator + ViewPager2 + Fragment + CoordinatorLayout + NestedScrollView + RecyclerView实现。
+  
 <img src="06.gif" alt="06" width="350">
 <br/>
 <br/>
