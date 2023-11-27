@@ -104,6 +104,7 @@ public class FlingTask implements Runnable {
     }
 
     // 从加速度到逐步衰减（AccelerateDecelerateInterpolator插值器 核心源码）
+    // 变化率开始和结束缓慢但从中间加速的
     public float getInterpolation(float input) {
         return (float) (Math.cos((input + 1) * Math.PI) / 2.0f) + 0.5f;
     }
