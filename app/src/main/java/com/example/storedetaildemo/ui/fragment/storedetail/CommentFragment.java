@@ -145,6 +145,7 @@ public class CommentFragment extends BaseFragment implements StoreDetailPagerVie
 
     @Override
     public boolean offsetScrollView(int dy, boolean direction,boolean fling) {
+        if(binding == null) return false;
         RecyclerView rv = binding.commentList;
 
         int cuDy = 0;

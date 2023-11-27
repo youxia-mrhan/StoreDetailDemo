@@ -117,19 +117,21 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
             valueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-                    mScrollState = SCROLL_STATE_SETTLING;
+                    setScrollState(SCROLL_STATE_SETTLING);
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     mScrollState = SCROLL_STATE_IDLE;
                     layoutOffsetRecord = false;
+                    setScrollState(SCROLL_STATE_IDLE);
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
                     mScrollState = SCROLL_STATE_IDLE;
                     layoutOffsetRecord = false;
+                    setScrollState(SCROLL_STATE_IDLE);
                 }
             });
 
@@ -182,8 +184,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                 valueAnimator.cancel();
                 valueAnimator.setDuration(0);
             }
-            setScrollState(SCROLL_STATE_IDLE);
         }
+        setScrollState(SCROLL_STATE_IDLE);
     }
 
 

@@ -289,6 +289,7 @@ public class OrderFoodFragment extends BaseFragment implements StoreDetailPagerV
 
     @Override
     public boolean offsetScrollView(int dy, boolean direction, boolean fling) {
+        if(binding == null) return false;
         RecyclerView rv = binding.productList;
         final int positionX = StoreDetailRootViewHo.firstDownPositionX;
         if (positionX >= binding.selectList.getLeft() && positionX <= binding.selectList.getRight()) {
