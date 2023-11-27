@@ -287,8 +287,6 @@ public class OrderFoodFragment extends BaseFragment implements StoreDetailPagerV
         // Log.d("TAG", "点餐菜 --- 手指抬起");
     }
 
-    private final DecelerateInterpolator dInterpolator = new DecelerateInterpolator();
-
     @Override
     public boolean offsetScrollView(int dy, boolean direction, boolean fling) {
         RecyclerView rv = binding.productList;
@@ -346,24 +344,14 @@ public class OrderFoodFragment extends BaseFragment implements StoreDetailPagerV
         if (direction) {
             if (rv.canScrollVertically(1)) {
                 cuDy = Math.abs(dy);
-                if (fling) {
-                    // Log.d("TAG", "当前滚动列表：" + currentScrollViewTag + " --- 执行向上滑惯性偏移cuDy：" + cuDy);
-                    rv.smoothScrollBy(0, cuDy, dInterpolator, 1000);
-                } else {
-                    // Log.d("TAG", "当前滚动列表：" + currentScrollViewTag + " --- 执行向上滑偏移cuDy：" + cuDy);
-                    rv.scrollBy(0, cuDy);
-                }
+                rv.scrollBy(0, cuDy);
+                return true;
             }
         } else {
             if (rv.canScrollVertically(-1)) {
-                cuDy = -dy;
-                if (fling) {
-                    // Log.d("TAG", "当前滚动列表：" + currentScrollViewTag + " --- 执行向下滑惯性偏移cuDy：" + cuDy);
-                    rv.smoothScrollBy(0, cuDy, dInterpolator, 1000);
-                } else {
-                    // Log.d("TAG", "当前滚动列表：" + currentScrollViewTag + " --- 执行向下滑偏移cuDy：" + cuDy);
-                    rv.scrollBy(0, cuDy);
-                }
+                cuDy = Math.abs(dy);
+                rv.scrollBy(0, -cuDy);
+                return true;
             }
         }
         return false;

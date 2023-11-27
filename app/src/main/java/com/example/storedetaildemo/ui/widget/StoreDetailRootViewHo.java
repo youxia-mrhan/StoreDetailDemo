@@ -1,5 +1,7 @@
 package com.example.storedetaildemo.ui.widget;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -17,7 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.storedetaildemo.behavior.StoreDetailBehavior;
-import com.example.storedetaildemo.common.FlingTask;
+import com.example.storedetaildemo.common.ComputeFling;
+
 
 /**
  * 这里主要功能为：
@@ -47,8 +50,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     // 所以我在dispatchTouchEvent里自己处理
     public static boolean direction = true; // true：向上 false：向下
 
+    // 变化率开始和结束缓慢但从中间加速的插值器
     private final AccelerateDecelerateInterpolator accelerateDecelerateInterpolator;
-    private FlingTask flingTask; // 惯性任务
 
     public static int OTHER_EVENT_LEVEL = 1; // 正在执行viewPager2上方区域
     public static int VIEWPAGER2_EVENT_LEVEL = 2; // 正在执行viewPager2区域
@@ -101,50 +104,88 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      */
     private boolean fling(int velocityX, int velocityY, boolean direction) {
         if (Math.abs(velocityY) > mMinimumVelocity) {
-            flingTask = new FlingTask(Math.abs(velocityY), mHandler, new FlingTask.FlingTaskCallback() {
+
+            jitterAnimation(velocityX, velocityY, false); // 抖动动画
+            stopFlingTask(); // 先清除上一次的惯性任务
+
+            ComputeFling mFlingComputeFling = new ComputeFling(getContext());
+            ComputeFling.FlingTaskInfo taskInfo = mFlingComputeFling.compute(0, velocityY, mMinimumVelocity, mMaximumVelocity);
+
+            valueAnimator = ValueAnimator.ofFloat(0, (float) taskInfo.getTotalDistance()).setDuration(taskInfo.getmDuration());
+            valueAnimator.setInterpolator(ComputeFling.sQuinticInterpolator);
+
+            valueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void executeTask(int dy) {
-                    int tempDy = 0;
-                    if (direction) { // 向上滑动
-                        tempDy = dy;
-                    } else { // 向下滑动
-                        tempDy = -dy;
-                    }
-                    storeDetailBehavior.layoutFoldingFromParent(tempDy, false);
+                public void onAnimationStart(Animator animation) {
+                    mScrollState = SCROLL_STATE_SETTLING;
                 }
 
                 @Override
-                public void stopTask() {
-                    setScrollState(SCROLL_STATE_IDLE);
+                public void onAnimationEnd(Animator animation) {
+                    mScrollState = SCROLL_STATE_IDLE;
+                    layoutOffsetRecord = false;
                 }
 
                 @Override
-                public void executeConsumptionTask(int velocityY) {
-                    jitterAnimation(velocityX, velocityY, direction);
-
-                    if (direction) { // 向上滑动
-                        if (storeDetailBehavior.isPagerToMax()) {
-                            // Log.d("TAG", "向上滑动：未消耗速度：" + velocityY);
-                            offsetScrollView(velocityY, true, true);
-                        }
-                    } else { // 向下滑动
-                        if (storeDetailBehavior.isPagerToInit()) {
-                            if (layoutOffsetRecord) {
-                                // Log.d("TAG", "向下滑动：未消耗速度：" + velocityY);
-                                offsetScrollView(velocityY, false, true);
-                            }
-                        }
-                    }
+                public void onAnimationCancel(Animator animation) {
+                    mScrollState = SCROLL_STATE_IDLE;
                     layoutOffsetRecord = false;
                 }
             });
 
-            flingTask.run();
-            setScrollState(SCROLL_STATE_SETTLING);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                float originalAnimatedValue = 0f;
+
+                @Override
+                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                    float animatedValue = Float.parseFloat(animation.getAnimatedValue().toString());
+                    int curY = (int) (animatedValue - originalAnimatedValue);
+                    // Log.d("TAG", "每次偏移的距离 curY：" + curY);
+                    int tempDy = 0;
+                    boolean runFling = true;
+                    if (direction) { // 向上滑动
+                        tempDy = curY;
+                        if (!storeDetailBehavior.isPagerToMax()) {
+                            storeDetailBehavior.layoutFoldingFromParent(tempDy, false);
+                        } else {
+                            runFling = offsetScrollView(tempDy, true, true);
+                        }
+                    } else { // 向下滑动
+                        tempDy = -curY;
+                        if (!storeDetailBehavior.isPagerToInit()) {
+                            storeDetailBehavior.layoutFoldingFromParent(tempDy, false);
+                        } else {
+                            if (layoutOffsetRecord) {
+                                runFling = offsetScrollView(tempDy, false, true);
+                            }
+                        }
+                    }
+                    originalAnimatedValue = animatedValue;
+
+                    if (!runFling) { // 当前scrollView无法继续滚动时，停止惯性任务
+                        stopFlingTask();
+                    }
+                }
+            });
+            valueAnimator.start();
             return true;
         }
         return false;
     }
+
+    /**
+     * 停止惯性滚动任务
+     */
+    private void stopFlingTask() {
+        if (mScrollState == SCROLL_STATE_SETTLING) {
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                valueAnimator.setDuration(0);
+            }
+            setScrollState(SCROLL_STATE_IDLE);
+        }
+    }
+
 
     private final int MAX_JITTER_VELOCITY_Y = 6000; // Y轴最大速度
     private final int JITTER_DISTANCE = 80; // 向下抖动距离
@@ -160,18 +201,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                 layoutOffsetRecord) {  // 偏移记录
             startTransgression(JITTER_DISTANCE, false); // 抖动
             onStopDragging();
-        }
-    }
-
-    /**
-     * 停止惯性滚动任务
-     */
-    public void stopFling() {
-        if (mScrollState == SCROLL_STATE_SETTLING) {
-            if (flingTask != null) {
-                flingTask.stopTask();
-                setScrollState(SCROLL_STATE_IDLE);
-            }
         }
     }
 
@@ -239,7 +268,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN: { // 手指按下
-                stopFling();
+                // stopFling();
+                stopFlingTask();
+
                 firstDownPositionX = (int) event.getX();
                 firstDownPositionY = (int) event.getY();
                 storeDetailBehavior.parentOnDown(event);
@@ -413,6 +444,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      * @param direction
      */
     private void startTransgression(int curDy, boolean direction) {
+
         if (Math.abs(yVel) > MAX_JITTER_VELOCITY_Y) { // 触发抖动
             curDy = JITTER_DISTANCE;
             yVel = 0f;
@@ -472,7 +504,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
             });
         }
 
-        valueAnimator.setDuration(250);
         valueAnimator.setInterpolator(accelerateDecelerateInterpolator);
         valueAnimator.start();
     }
@@ -540,6 +571,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        stopFlingTask();
         viewPager2PositionY = 0;
         firstDownPositionX = 0;
         firstDownPositionY = 0;
