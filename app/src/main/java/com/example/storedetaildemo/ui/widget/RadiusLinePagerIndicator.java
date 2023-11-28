@@ -132,7 +132,7 @@ public class RadiusLinePagerIndicator extends View implements IPagerIndicator {
                 rightX = rightX01;
                 nextRightX = nextRightX01 -= deviation;
 
-            } else if (position == 1) { // 点餐
+            } else if (position == 1) { // 评论
 
                 PositionData current02 = FragmentContainerHelper.getImitativePositionData(mPositionDataList, 1);
                 PositionData next02 = FragmentContainerHelper.getImitativePositionData(mPositionDataList, 2);
