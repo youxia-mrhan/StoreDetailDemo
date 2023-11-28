@@ -68,8 +68,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
     public static int firstDownPositionX;
     public static int firstDownPositionY;
-    private ValueAnimator valueAnimator;
-    private float xVel, yVel;
+    private ValueAnimator reboundValueAnimator; // 回弹动画对象
+    private ValueAnimator flingValueAnimator; // 惯性动画对象
 
     public StoreDetailRootViewHo(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -105,16 +105,15 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     private boolean fling(int velocityX, int velocityY, boolean direction) {
         if (Math.abs(velocityY) > mMinimumVelocity) {
 
-            jitterAnimation(velocityX, velocityY, false); // 抖动动画
             stopFlingTask(); // 先清除上一次的惯性任务
 
             ComputeFling mFlingComputeFling = new ComputeFling(getContext());
             ComputeFling.FlingTaskInfo taskInfo = mFlingComputeFling.compute(0, velocityY, mMinimumVelocity, mMaximumVelocity);
 
-            valueAnimator = ValueAnimator.ofFloat(0, (float) taskInfo.getTotalDistance()).setDuration(taskInfo.getmDuration());
-            valueAnimator.setInterpolator(ComputeFling.sQuinticInterpolator);
+            flingValueAnimator = ValueAnimator.ofFloat(0, (float) taskInfo.getTotalDistance()).setDuration(taskInfo.getmDuration());
+            flingValueAnimator.setInterpolator(ComputeFling.sQuinticInterpolator);
 
-            valueAnimator.addListener(new AnimatorListenerAdapter() {
+            flingValueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animation) {
                     setScrollState(SCROLL_STATE_SETTLING);
@@ -122,20 +121,18 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    mScrollState = SCROLL_STATE_IDLE;
                     layoutOffsetRecord = false;
                     setScrollState(SCROLL_STATE_IDLE);
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
-                    mScrollState = SCROLL_STATE_IDLE;
                     layoutOffsetRecord = false;
                     setScrollState(SCROLL_STATE_IDLE);
                 }
             });
 
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            flingValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 float originalAnimatedValue = 0f;
 
                 @Override
@@ -158,6 +155,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                             storeDetailBehavior.layoutFoldingFromParent(tempDy, false);
                         } else {
                             if (layoutOffsetRecord) {
+                                if ((reboundValueAnimator == null || !reboundValueAnimator.isRunning())) {
+                                    jitterAnimation(velocityX, velocityY, false); // 抖动动画
+                                }
                                 runFling = offsetScrollView(tempDy, false, true);
                             }
                         }
@@ -169,7 +169,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                     }
                 }
             });
-            valueAnimator.start();
+            flingValueAnimator.start();
             return true;
         }
         return false;
@@ -180,14 +180,25 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      */
     private void stopFlingTask() {
         if (mScrollState == SCROLL_STATE_SETTLING) {
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                valueAnimator.setDuration(0);
+            if (flingValueAnimator != null) {
+                flingValueAnimator.cancel();
+                flingValueAnimator.setDuration(0);
             }
         }
         setScrollState(SCROLL_STATE_IDLE);
     }
 
+    /**
+     * 停止回弹动画
+     */
+    private void stopRebound() {
+        if (StoreDetailInfoHo.dragPositionState == StoreDetailInfoHo.FLOAT) {
+            if (reboundValueAnimator != null) {
+                reboundValueAnimator.cancel();
+                reboundValueAnimator.setDuration(0);
+            }
+        }
+    }
 
     private final int MAX_JITTER_VELOCITY_Y = 6000; // Y轴最大速度
     private final int JITTER_DISTANCE = 80; // 向下抖动距离
@@ -270,7 +281,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN: { // 手指按下
-                // stopFling();
                 stopFlingTask();
 
                 firstDownPositionX = (int) event.getX();
@@ -390,8 +400,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                 mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
 
                 // 最后一次 X/Y 轴的滑动速度
-                xVel = -mVelocityTracker.getXVelocity(mScrollPointerId);
-                yVel = -mVelocityTracker.getYVelocity(mScrollPointerId);
+                final float xVel = -mVelocityTracker.getXVelocity(mScrollPointerId);
+                final float yVel = -mVelocityTracker.getYVelocity(mScrollPointerId);
 
                 if (startFling && // 开启惯性
                         storeDetailList.getTranslationY() <= 0 && // 非越界操作
@@ -415,6 +425,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
                 resetScroll(); // 重置速度跟踪器
                 EVENT_LEVEL = NO_EVENT; // 重置触摸状态
+                // jitterProtect = false; // 重置抖动保护
 
                 if (storeDetailList.getTranslationY() > 0 && // 进行了越界操作
                         StoreDetailInfoHo.expandAnimatorEnd && // 展开/收缩公告动画结束
@@ -446,12 +457,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      * @param direction
      */
     private void startTransgression(int curDy, boolean direction) {
-
-        if (Math.abs(yVel) > MAX_JITTER_VELOCITY_Y) { // 触发抖动
-            curDy = JITTER_DISTANCE;
-            yVel = 0f;
-        }
-
         if (direction) {
             if (storeDetailList.getTranslationY() > 0) {
                 storeDetailBehavior.layoutFoldingFromParent(curDy, true);
@@ -472,7 +477,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      * 根据拖拽的百分比，进行公告展开或收缩的过渡动画
      */
     private void onStopDragging() {
-        yVel = 0f;
         if (storeDetailList.getTranslationY() <= 0) { // 当前处于初始位置
             return;
         }
@@ -481,8 +485,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
         // 滑动距离超过 mStoreContentLayoutView原始位置的30%时
         if (storeDetailList.getTranslationY() > defaultDisplayHeight * 0.3) {
             // 滑动到底部
-            valueAnimator = ObjectAnimator.ofInt((int) storeDetailList.getTranslationY(), (int) storeDetailBehavior.getMaxOffsetBottom());
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            reboundValueAnimator = ObjectAnimator.ofInt((int) storeDetailList.getTranslationY(), (int) storeDetailBehavior.getMaxOffsetBottom());
+            reboundValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                     float value = Float.parseFloat(animation.getAnimatedValue().toString());
@@ -494,8 +498,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
         } else {
             // 反之 回弹到初始位置
-            valueAnimator = ObjectAnimator.ofInt(-(int) storeDetailList.getTranslationY(), 0);
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            reboundValueAnimator = ObjectAnimator.ofInt(-(int) storeDetailList.getTranslationY(), 0);
+            reboundValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                     float value = Float.parseFloat(animation.getAnimatedValue().toString());
@@ -506,8 +510,8 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
             });
         }
 
-        valueAnimator.setInterpolator(accelerateDecelerateInterpolator);
-        valueAnimator.start();
+        reboundValueAnimator.setInterpolator(accelerateDecelerateInterpolator);
+        reboundValueAnimator.start();
     }
 
     /**
@@ -574,6 +578,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         stopFlingTask();
+        stopRebound();
         viewPager2PositionY = 0;
         firstDownPositionX = 0;
         firstDownPositionY = 0;
