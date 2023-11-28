@@ -21,7 +21,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.example.storedetaildemo.behavior.StoreDetailBehavior;
 import com.example.storedetaildemo.common.ComputeFling;
 
-
 /**
  * 这里主要功能为：
  * 1、拖动viewpager2以外的区域时，整体偏移
@@ -68,6 +67,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
     public static int firstDownPositionX;
     public static int firstDownPositionY;
+
+    private boolean jitterProtect = true; // 确保每次惯性 只触发一次抖动动画
+
     private ValueAnimator reboundValueAnimator; // 回弹动画对象
     private ValueAnimator flingValueAnimator; // 惯性动画对象
 
@@ -104,11 +106,10 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      */
     private boolean fling(int velocityX, int velocityY, boolean direction) {
         if (Math.abs(velocityY) > mMinimumVelocity) {
-
             stopFlingTask(); // 先清除上一次的惯性任务
-
             ComputeFling mFlingComputeFling = new ComputeFling(getContext());
             ComputeFling.FlingTaskInfo taskInfo = mFlingComputeFling.compute(0, velocityY, mMinimumVelocity, mMaximumVelocity);
+            jitterProtect = true;
 
             flingValueAnimator = ValueAnimator.ofFloat(0, (float) taskInfo.getTotalDistance()).setDuration(taskInfo.getmDuration());
             flingValueAnimator.setInterpolator(ComputeFling.sQuinticInterpolator);
@@ -123,12 +124,16 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                 public void onAnimationEnd(Animator animation) {
                     layoutOffsetRecord = false;
                     setScrollState(SCROLL_STATE_IDLE);
+                    flingValueAnimator = null;
+                    jitterProtect = true;
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
                     layoutOffsetRecord = false;
                     setScrollState(SCROLL_STATE_IDLE);
+                    flingValueAnimator = null;
+                    jitterProtect = true;
                 }
             });
 
@@ -155,8 +160,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                             storeDetailBehavior.layoutFoldingFromParent(tempDy, false);
                         } else {
                             if (layoutOffsetRecord) {
-                                if ((reboundValueAnimator == null || !reboundValueAnimator.isRunning())) {
+                                if (jitterProtect && (reboundValueAnimator == null || !reboundValueAnimator.isRunning())) {
                                     jitterAnimation(velocityX, velocityY, false); // 抖动动画
+                                    jitterProtect = false;
                                 }
                                 runFling = offsetScrollView(tempDy, false, true);
                             }
@@ -181,8 +187,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     private void stopFlingTask() {
         if (mScrollState == SCROLL_STATE_SETTLING) {
             if (flingValueAnimator != null) {
-                flingValueAnimator.cancel();
                 flingValueAnimator.setDuration(0);
+                flingValueAnimator.cancel();
+                flingValueAnimator = null;
             }
         }
         setScrollState(SCROLL_STATE_IDLE);
@@ -194,8 +201,9 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
     private void stopRebound() {
         if (StoreDetailInfoHo.dragPositionState == StoreDetailInfoHo.FLOAT) {
             if (reboundValueAnimator != null) {
-                reboundValueAnimator.cancel();
                 reboundValueAnimator.setDuration(0);
+                reboundValueAnimator.cancel();
+                reboundValueAnimator = null;
             }
         }
     }
@@ -209,6 +217,7 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
      * 下滑惯性 到达初始位置时执行
      */
     public void jitterAnimation(int velocityX, int velocityY, boolean direction) {
+        if (!jitterProtect) return;
         if (Math.abs(velocityY) > MAX_JITTER_VELOCITY_Y && // 速度超过6000
                 !direction && // 向下滑动
                 layoutOffsetRecord) {  // 偏移记录
@@ -330,7 +339,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                     }
                 }
 
-
                 if (canSlide) { // 触摸viewpager2上方区域
                     // Log.d("TAG", "不是viewPager2区域");
 
@@ -425,7 +433,6 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
 
                 resetScroll(); // 重置速度跟踪器
                 EVENT_LEVEL = NO_EVENT; // 重置触摸状态
-                // jitterProtect = false; // 重置抖动保护
 
                 if (storeDetailList.getTranslationY() > 0 && // 进行了越界操作
                         StoreDetailInfoHo.expandAnimatorEnd && // 展开/收缩公告动画结束
@@ -509,6 +516,18 @@ public class StoreDetailRootViewHo extends CoordinatorLayout {
                 }
             });
         }
+
+        reboundValueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                reboundValueAnimator = null;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                reboundValueAnimator = null;
+            }
+        });
 
         reboundValueAnimator.setInterpolator(accelerateDecelerateInterpolator);
         reboundValueAnimator.start();
