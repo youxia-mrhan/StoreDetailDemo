@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application android:name="com.example.provider.common.App">
+        <activity
+            android:name=".ui.activity.StoreDetailMainAtyH"
+            android:theme="@style/Theme.Immersive"
+            android:exported="true" />
+    </application>
+
+</manifest>

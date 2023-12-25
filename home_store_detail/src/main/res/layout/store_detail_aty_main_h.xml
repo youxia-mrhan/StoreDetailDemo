@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.example.home_store_detail.ui.view.StoreDetailCoordinatorH
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.StoreDetailMainAtyH">
+
+        <!-- 店铺信息 -->
+        <com.example.home_store_detail.ui.view.StoreDetailInfoH
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 点餐/评价/商家 -->
+        <com.example.home_store_detail.ui.view.StoreDetailTabPageH
+            android:id="@+id/tab_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.example.home_store_detail.behavior.StoreDetailTabPageBehaviorH" />
+
+        <!-- 搜索栏 -->
+        <com.example.home_store_detail.ui.view.StoreDetailSearchBarH
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 购物车 -->
+        <com.example.home_store_detail.ui.view.StoreDetailShoppingCartH
+            android:id="@+id/shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </com.example.home_store_detail.ui.view.StoreDetailCoordinatorH>
+</layout>

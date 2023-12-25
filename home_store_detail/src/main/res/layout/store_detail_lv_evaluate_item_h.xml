@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="evaluateItems"
+            type="com.example.home_store_detail.viewmodel.StoreDetailVMH.EvaluateInfoBean.EvaluatesBean.EvaluateItemsBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageViewBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/user_url"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/Font_303133_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxWidth="150dp"
+            android:singleLine="true"
+            android:text="@{evaluateItems.name,default=@string/default_value}"
+            app:layout_constraintStart_toEndOf="@+id/imageViewBox"
+            app:layout_constraintTop_toTopOf="@+id/imageViewBox" />
+
+        <TextView
+            android:id="@+id/user_level"
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:text="@{evaluateItems.level_title,default=@string/default_value}"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/user_name"
+            app:layout_constraintStart_toEndOf="@+id/user_name"
+            app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+        <TextView
+            android:id="@+id/release_time"
+            style="@style/Font_909399_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{evaluateItems.time_str,default=@string/default_value}"
+            app:layout_constraintBottom_toBottomOf="@+id/user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+        <LinearLayout
+            android:id="@+id/star_group"
+            android:layout_width="60dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/user_name"
+            app:layout_constraintTop_toBottomOf="@+id/user_name">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/evaluate_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/release_time"
+            app:layout_constraintStart_toStartOf="@+id/star_group"
+            app:layout_constraintTop_toBottomOf="@+id/star_group" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

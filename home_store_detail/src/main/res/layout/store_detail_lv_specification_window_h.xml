@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.baselibrary.util.MoneyConvertUtils" />
+
+        <variable
+            name="product"
+            type="com.example.home_store_detail.viewmodel.StoreDetailVMH.OrderFoodInfoBean.ProductsBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/window_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/store_detail_shape_info_card_h"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/product_name"
+                style="@style/Font_303133_16_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ellipsize="end"
+                android:maxWidth="200dp"
+                android:singleLine="true"
+                android:text="@{product.title,default=@string/default_value}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/Font_606266_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="规格"
+                app:layout_constraintStart_toStartOf="@+id/product_name"
+                app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/specification_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="20dp"
+                app:flexWrap="wrap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/Font_606266_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="属性名称"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/specification_group" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/attributes_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="20dp"
+                app:flexWrap="wrap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/attributes_group">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    style="@style/Font_909399_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="已选规格:" />
+
+                <TextView
+                    android:id="@+id/selected_str"
+                    style="@style/Font_303133_13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/default_value" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    style="@style/Font_F9230A_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_price"
+                    style="@style/Font_F9230A_24_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxWidth="200dp"
+                    android:singleLine="true"
+                    android:text="@string/default_value"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/add_cart_btn"
+                    style="@style/Font_FFFFFF_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="11dp"
+                    android:background="@drawable/store_detail_shape_add_cart_btn_h"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="6dp"
+                    android:text="加入购物车"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/product_count_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:id="@+id/reduce_btn_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="7.5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/product_count"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/reduce_btn"
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/reduce_product_icon" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/product_count"
+                        style="@style/Font_303133_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        app:layout_constraintBottom_toBottomOf="@+id/add_btn_box"
+                        app:layout_constraintEnd_toStartOf="@+id/add_btn_box"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_box" />
+
+                    <FrameLayout
+                        android:id="@+id/add_btn_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:paddingStart="7.5dp"
+                        android:paddingEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/add_btn"
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/add_product_icon" />
+
+                    </FrameLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/close_window_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/window_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:src="@mipmap/close_specification_window" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

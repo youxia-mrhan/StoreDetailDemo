@@ -1,0 +1,47 @@
+project.ext {
+
+    // 统一版本
+    // 注意：命名不要和build.gradle里的关键字一样，有可能报错，我这里加V区分
+
+    androidV = [
+            compileSdk: 33
+    ]
+
+    defaultConfigV = [
+            applicationId: "com.example.storedetaildemo",
+            minSdk       : 21,
+            targetSdk    : 33,
+            versionCode  : 1,
+            versionName  : "1.0",
+    ]
+
+    compileOptionsV = [
+            sourceCompatibility: JavaVersion.VERSION_1_8,
+            targetCompatibility: JavaVersion.VERSION_1_8
+    ]
+
+    dependenciesV = [
+            appcompat            : "androidx.appcompat:appcompat:1.6.1",
+            material             : "com.google.android.material:material:1.8.0",
+            constraintlayout     : "androidx.constraintlayout:constraintlayout:2.1.4",
+            junit                : "junit:junit:4.13.2",
+            ext_junit            : "androidx.test.ext:junit:1.1.5",
+            espresso             : "androidx.test.espresso:espresso-core:3.5.1",
+            navigation_fragment  : "androidx.navigation:navigation-fragment:2.5.3",
+            navigation_ui        : "androidx.navigation:navigation-ui:2.5.3",
+            gson                 : "com.google.code.gson:gson:2.10.1",
+            magic_indicator      : "com.github.hackware1993:MagicIndicator:1.7.0",
+            glide                : "com.github.bumptech.glide:glide:4.16.0",
+            glide_compiler       : "com.github.bumptech.glide:compiler:4.16.0",
+            glide_transformations: "jp.wasabeef:glide-transformations:4.3.0",
+            banner               : "io.github.youth5201314:banner:2.2.2",
+            arouter_api          : "com.alibaba:arouter-api:1.5.2",
+            arouter_compiler     : "com.alibaba:arouter-compiler:1.5.2",
+            flexbox              : "com.google.android.flexbox:flexbox:3.0.0",
+            roundedimageview     : "com.makeramen:roundedimageview:2.3.0",
+            broccoli             : "me.samlss:broccoli:1.0.0"
+    ]
+}
+
+
+

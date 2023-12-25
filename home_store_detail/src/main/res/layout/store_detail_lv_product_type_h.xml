@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="productType"
+            type="com.example.home_store_detail.viewmodel.StoreDetailVMH.OrderFoodInfoBean.ProductTypeBean" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/type_box"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/type_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:visibility="@{(productType.getImage_id != -1) ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/type_title"
+            style="@style/Font_303133_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@{(productType.getImage_id != -1) ? (int)@dimen/dp_4 : (int)@dimen/dp_0}"
+            android:text="@{productType.title,default=@string/default_value}" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,37 @@
+
+文件类型缩写
+
+aty ------------ Activity 类
+frm ------------ Fragment 类
+adp ------------ Adapter 类
+sev ------------ Service 类
+...  ...
+
+lv ------------ 自定义布局视图
+tv ----------- 自定义TextView 类
+bar ----------- 自定义AppBar 类
+... ... 
+
+
+模块名缩写
+ - 如果是主模块
+Home - home
+
+ - 如果是 子模块 或 子孙模块
+HomeStoreDetail - 文件末位加上，主模块首字母H，StoreDetail + xxx + H
+
+
+拼接使用：
+
+模块名_文件类型缩写_xx_模块首字母H.xml
+
+模块名+ xx + 文件类型缩写 + 模块首字母H.java
+
+
+扩展名称：扩展方法完整名称 + Ex
+
+在辅助模块里的，文件名也尽量写完整，不要使用缩写，也不需要带模块名，，比如 baselibrary、provider 模块
+
+
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.example.home_store_detail.ui.view.StoreDetailNestedScrollViewH
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        tools:context=".ui.fragment.StoreDetailMerchantFrmH">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_F5F6F7"
+            android:orientation="vertical">
+
+            <com.example.home_store_detail.ui.view.StoreDetailMerchantCardH
+                android:id="@+id/merchant_store_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/title_btn_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+    </com.example.home_store_detail.ui.view.StoreDetailNestedScrollViewH>
+</layout>

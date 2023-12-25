@@ -10,9 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven {url "https://jitpack.io"}
     }
 }
 
 rootProject.name = "Store Detail Demo"
 include ':app'
+include ':baselibrary'
+include ':provider'
+include ':home_store_detail'

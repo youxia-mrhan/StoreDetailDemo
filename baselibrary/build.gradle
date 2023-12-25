@@ -1,0 +1,75 @@
+if (isBaseModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+apply from: "${rootProject.rootDir}/common.gradle"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: 'kotlin-kapt'
+
+android {
+    namespace 'com.example.baselibrary'
+    compileSdk project.androidV["compileSdk"]
+
+    dataBinding.enabled true
+
+    defaultConfig {
+        minSdk project.defaultConfigV["minSdk"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "Boolean", "DEBUG", "${isDebug}"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isBaseModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility project.compileOptionsV["sourceCompatibility"]
+        targetCompatibility project.compileOptionsV["targetCompatibility"]
+    }
+}
+
+dependencies {
+
+    api project.dependenciesV["gson"]
+    api project.dependenciesV["appcompat"]
+    api project.dependenciesV["material"]
+    api project.dependenciesV["constraintlayout"]
+    api project.dependenciesV["navigation_fragment"]
+    api project.dependenciesV["navigation_ui"]
+    api project.dependenciesV["magic_indicator"]
+    api project.dependenciesV["glide"]
+    kapt project.dependenciesV["glide_compiler"]
+    api project.dependenciesV["glide_transformations"]
+    api project.dependenciesV["banner"]
+    api project.dependenciesV["arouter_api"]
+    kapt project.dependenciesV["arouter_compiler"]
+    api project.dependenciesV["flexbox"]
+    api project.dependenciesV["roundedimageview"]
+    api project.dependenciesV["broccoli"]
+    testImplementation project.dependenciesV["junit"]
+    androidTestImplementation project.dependenciesV["ext_junit"]
+    androidTestImplementation project.dependenciesV["espresso"]
+}

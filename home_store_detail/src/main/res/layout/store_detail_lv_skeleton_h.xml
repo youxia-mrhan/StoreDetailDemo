@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 店铺信息 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/sk_store_bg"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/sk_store_info_card_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="105dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sk_content_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/store_detail_shape_info_card_h"
+                    android:elevation="20dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:outlineSpotShadowColor="@color/color_1A7B8996"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/sk_detail_store_name"
+                        style="@style/Font_303133_18_bold"
+                        android:layout_width="215dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/sk_store_evaluate"
+                        style="@style/Font_606266_11"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/default_value"
+                        app:layout_constraintStart_toStartOf="@+id/sk_detail_store_name"
+                        app:layout_constraintTop_toBottomOf="@+id/sk_detail_store_name" />
+
+                    <View
+                        android:id="@+id/sk_divider"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="4dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="@+id/sk_store_evaluate"
+                        app:layout_constraintStart_toEndOf="@+id/sk_store_evaluate"
+                        app:layout_constraintTop_toTopOf="@+id/sk_store_evaluate" />
+
+                    <TextView
+                        android:id="@+id/sk_sale_quantity"
+                        style="@style/Font_606266_11"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/default_value"
+                        app:layout_constraintLeft_toRightOf="@id/sk_divider"
+                        app:layout_constraintTop_toTopOf="@id/sk_divider" />
+
+                    <View
+                        android:id="@+id/sk_divider2"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="4dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="@+id/sk_sale_quantity"
+                        app:layout_constraintStart_toEndOf="@+id/sk_sale_quantity"
+                        app:layout_constraintTop_toTopOf="@+id/sk_sale_quantity" />
+
+                    <TextView
+                        android:id="@+id/sk_store_distance"
+                        style="@style/Font_606266_11"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/default_value"
+                        app:layout_constraintBottom_toBottomOf="@+id/sk_divider2"
+                        app:layout_constraintLeft_toRightOf="@id/sk_divider2"
+                        app:layout_constraintTop_toTopOf="@+id/sk_divider2" />
+
+                    <View
+                        android:id="@+id/sk_divider4"
+                        android:layout_width="0.5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="4dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="@+id/sk_store_distance"
+                        app:layout_constraintStart_toEndOf="@+id/sk_store_distance"
+                        app:layout_constraintTop_toTopOf="@+id/sk_store_distance" />
+
+                    <TextView
+                        android:id="@+id/sk_personal_price"
+                        style="@style/Font_606266_11"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/default_value"
+                        app:layout_constraintBottom_toBottomOf="@+id/sk_divider4"
+                        app:layout_constraintStart_toEndOf="@+id/sk_divider4"
+                        app:layout_constraintTop_toTopOf="@+id/sk_divider4" />
+
+                    <View
+                        android:id="@+id/sk_divider5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sk_store_evaluate" />
+
+                    <View
+                        android:id="@+id/sk_divider7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sk_store_phone_icon" />
+
+                    <TextView
+                        android:id="@+id/sk_store_address"
+                        style="@style/Font_909399_12"
+                        android:layout_width="271dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:text="@string/default_value"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sk_divider5" />
+
+                    <ImageView
+                        android:id="@+id/sk_store_phone_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="7.5dp"
+                        app:layout_constraintEnd_toEndOf="@+id/sk_divider5"
+                        app:layout_constraintTop_toBottomOf="@+id/sk_divider5" />
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/sk_coupon_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        app:flexWrap="wrap"
+                        app:layout_constraintLeft_toLeftOf="@id/sk_divider7"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sk_divider7" />
+
+                    <LinearLayout
+                        android:id="@+id/sk_announcement_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:minHeight="28dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="@id/sk_coupon_group"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sk_coupon_group">
+
+                        <TextView
+                            android:id="@+id/sk_announcement_content"
+                            style="@style/Font_303133_12"
+                            android:layout_width="1dp"
+                            android:layout_height="18dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/default_value" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sk_store_img_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|right"
+                    android:layout_marginRight="32dp"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:outlineSpotShadowColor="@color/color_1A7B8996"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="30dp">
+
+                    <ImageView
+                        android:id="@+id/sk_store_img"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:scaleType="fitXY" />
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sk_other_box"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sk_store_info_card_box">
+
+                <LinearLayout
+                    android:id="@+id/sk_limited_time_offer_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/store_detail_shape_info_card_h"
+                    android:elevation="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:outlineAmbientShadowColor="@color/black"
+                    android:outlineSpotShadowColor="@color/color_1A7B8996"
+                    android:paddingHorizontal="12dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/sk_offer_text"
+                        style="@style/Font_F9230A_13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/default_value" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 点餐/评价/商家 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="372dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:elevation="20dp"
+                android:orientation="horizontal"
+                android:outlineAmbientShadowColor="@color/black"
+                android:outlineSpotShadowColor="@color/color_1A7B8996">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <View
+                        android:id="@+id/sk_tab_01"
+                        android:layout_width="30dp"
+                        android:layout_height="21dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <View
+                        android:id="@+id/sk_tab_02"
+                        android:layout_width="30dp"
+                        android:layout_height="21dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <View
+                        android:id="@+id/sk_tab_03"
+                        android:layout_width="30dp"
+                        android:layout_height="21dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/darker_gray" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/sk_divider6"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_EEEEEE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/sk_carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="84dp"
+                        android:layout_height="500dp"
+                        android:background="@color/color_F5F6F7"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_01"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_02"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_03"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_04"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_05"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_06"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_type_07"
+                                android:layout_width="52dp"
+                                android:layout_height="19dp"
+                                android:layout_gravity="center"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="500dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingStart="8dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <View
+                                android:id="@+id/sk_product_type_title"
+                                android:layout_width="126dp"
+                                android:layout_height="21dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@android:color/darker_gray" />
+                        </FrameLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingBottom="24dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/sk_product_img_box01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/sk_product_img01"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:src="@mipmap/ic_launcher_round" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/sk_product_name01"
+                                style="@style/Font_303133_14_bold"
+                                android:layout_width="155dp"
+                                android:layout_height="21dp"
+                                android:layout_marginStart="16dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxWidth="155dp"
+                                android:maxLines="2"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toEndOf="@+id/sk_product_img_box01"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/sk_product_describe01"
+                                style="@style/Font_909399_11"
+                                android:layout_width="151dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_name01"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_name01" />
+
+                            <TextView
+                                android:id="@+id/sk_sale_quality01"
+                                style="@style/Font_909399_11"
+                                android:layout_width="60dp"
+                                android:layout_height="24dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_describe01"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_describe01" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/sk_product_btn_group01"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/sk_sale_quality01"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_sale_quality01">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/sk_product_price_box01"
+                                    android:layout_width="95dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <TextView
+                                        android:id="@+id/sk_product_price01"
+                                        style="@style/Font_303133_16_bold"
+                                        android:layout_width="56dp"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingBottom="24dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/sk_product_img_box02"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/sk_product_img02"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:src="@mipmap/ic_launcher_round" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/sk_product_name02"
+                                style="@style/Font_303133_14_bold"
+                                android:layout_width="155dp"
+                                android:layout_height="21dp"
+                                android:layout_marginStart="16dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxWidth="155dp"
+                                android:maxLines="2"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toEndOf="@+id/sk_product_img_box02"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/sk_product_describe02"
+                                style="@style/Font_909399_11"
+                                android:layout_width="151dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_name02"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_name02" />
+
+                            <TextView
+                                android:id="@+id/sk_sale_quality02"
+                                style="@style/Font_909399_11"
+                                android:layout_width="60dp"
+                                android:layout_height="24dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_describe02"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_describe02" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/sk_product_btn_group02"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/sk_sale_quality02"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_sale_quality02">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/sk_product_price_box02"
+                                    android:layout_width="95dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <TextView
+                                        android:id="@+id/sk_product_price02"
+                                        style="@style/Font_303133_16_bold"
+                                        android:layout_width="56dp"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:text="0"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingBottom="24dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/sk_product_img_box03"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/sk_product_img03"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:src="@mipmap/ic_launcher_round" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/sk_product_name03"
+                                style="@style/Font_303133_14_bold"
+                                android:layout_width="155dp"
+                                android:layout_height="21dp"
+                                android:layout_marginStart="16dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxWidth="155dp"
+                                android:maxLines="2"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toEndOf="@+id/sk_product_img_box03"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/sk_product_describe03"
+                                style="@style/Font_909399_11"
+                                android:layout_width="151dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_name03"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_name03" />
+
+                            <TextView
+                                android:id="@+id/sk_sale_quality03"
+                                style="@style/Font_909399_11"
+                                android:layout_width="60dp"
+                                android:layout_height="24dp"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/default_value"
+                                app:layout_constraintStart_toStartOf="@+id/sk_product_describe03"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_product_describe03" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/sk_product_btn_group"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/sk_sale_quality03"
+                                app:layout_constraintTop_toBottomOf="@+id/sk_sale_quality03">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/sk_product_price_box03"
+                                    android:layout_width="95dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <TextView
+                                        android:id="@+id/sk_product_price03"
+                                        style="@style/Font_303133_16_bold"
+                                        android:layout_width="56dp"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:text="0"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 搜索栏 -->
+        <com.example.baselibrary.ui.view.ImmersiveBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:isBlack="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sk_bar_content_box"
+                android:layout_width="match_parent"
+                android:layout_height="44dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sk_back_icon_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    app:contentPaddingBottom="10dp"
+                    app:contentPaddingLeft="8dp"
+                    app:contentPaddingRight="8dp"
+                    app:contentPaddingTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/sk_back_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/back_white" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:id="@+id/sk_search_bar_box"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/sk_back_icon_box"
+                    app:layout_constraintRight_toLeftOf="@id/sk_share_icon_box"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:id="@+id/sk_search_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/sk_search_hint_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:alpha="0"
+                            android:background="@color/color_F5F6F7"
+                            android:gravity="center_vertical"
+                            android:paddingStart="46dp"
+                            android:text="请输入商品名称"
+                            android:textColor="@android:color/transparent"
+                            android:textSize="14sp" />
+
+                        <FrameLayout
+                            android:id="@+id/sk_search_ic_box"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_vertical"
+                            android:alpha="0"
+                            android:background="@android:color/transparent"
+                            android:paddingStart="16dp">
+
+                            <ImageView
+                                android:id="@+id/sk_search_ic"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/search_white" />
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sk_share_icon_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    app:contentPaddingBottom="10dp"
+                    app:contentPaddingLeft="4dp"
+                    app:contentPaddingRight="16dp"
+                    app:contentPaddingTop="10dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/sk_share_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/share_white" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.example.baselibrary.ui.view.ImmersiveBar>
+
+        <!-- 购物车 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingBottom="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/sk_cart_welfare_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sk_cart_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@color/white"
+                    android:paddingStart="88dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sk_cart_welfare_info">
+
+                    <TextView
+                        android:id="@+id/sk_cart_product_price"
+                        style="@style/Font_FFFFFF_20_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4.5dp"
+                        android:ellipsize="end"
+                        android:maxWidth="130dp"
+                        android:singleLine="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/sk_cart_product_original_price"
+                        style="@style/Font_C0C4CC_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4.5dp"
+                        android:ellipsize="end"
+                        android:maxWidth="130dp"
+                        android:singleLine="true"
+                        app:layout_constraintBottom_toBottomOf="@id/sk_cart_product_price"
+                        app:layout_constraintLeft_toRightOf="@id/sk_cart_product_price"
+                        app:layout_constraintTop_toTopOf="@id/sk_cart_product_price" />
+
+                    <TextView
+                        android:id="@+id/sk_cart_product_limited_time_price"
+                        style="@style/Font_FFFFFF_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxWidth="130dp"
+                        android:singleLine="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sk_cart_product_price" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:stateListAnimator="@null"
+                        app:cornerRadius="20dp"
+                        app:elevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="82dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent">
+
+                    <ImageView
+                        android:id="@+id/sk_cart_img"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</layout>

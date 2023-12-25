@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/carousel_box"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:viewBindingIgnore="true" />
+
+<!--<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/carousel_box"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="110dp"-->
+<!--    app:cardBackgroundColor="@android:color/transparent"-->
+<!--    app:cardCornerRadius="8dp"-->
+<!--    app:cardElevation="0dp"-->
+<!--    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--    app:layout_constraintRight_toRightOf="parent"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+<!--    tools:viewBindingIgnore="true">-->
+
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/carousel_container"-->
+<!--        android:background="@color/black"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
+<!--</com.google.android.material.card.MaterialCardView>-->

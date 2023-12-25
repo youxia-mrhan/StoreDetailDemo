@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="styleId"
+            type="int" />
+
+        <variable
+            name="product"
+            type="com.example.home_store_detail.viewmodel.StoreDetailVMH.OrderFoodInfoBean.ProductsBean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingBottom="24dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/product_img_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher_round" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/product_name"
+            style="@style/Font_303133_14_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="3dp"
+            android:maxWidth="155dp"
+            android:maxLines="2"
+            android:text="@{product.title,default=@string/default_value}"
+            app:layout_constraintStart_toEndOf="@+id/product_img_box"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/product_describe"
+            style="@style/Font_909399_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{product.describe,default=@string/default_value}"
+            app:layout_constraintStart_toStartOf="@+id/product_name"
+            app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+        <TextView
+            android:id="@+id/sale_quality"
+            style="@style/Font_909399_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{`售出`+String.valueOf(product.quantity),default=@string/default_value}"
+            app:layout_constraintStart_toStartOf="@+id/product_describe"
+            app:layout_constraintTop_toBottomOf="@+id/product_describe" />
+
+        <!--  没有规格 的商品样式  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/product_btn_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{styleId == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sale_quality"
+            app:layout_constraintTop_toBottomOf="@+id/sale_quality">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_price_box"
+                android:layout_width="95dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/Font_303133_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="¥"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_price"
+                    style="@style/Font_303133_16_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                    app:layout_constraintTop_toTopOf="@+id/textView7" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_price_box"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/translation_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_btn_box"
+                    app:layout_constraintEnd_toStartOf="@+id/add_btn_box">
+
+                    <FrameLayout
+                        android:id="@+id/reduce_btn_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="7.5dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="bottom"
+                            android:src="@mipmap/reduce_product_icon" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/product_quantity"
+                        style="@style/Font_303133_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/add_btn_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    android:paddingStart="7.5dp"
+                    android:paddingEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:id="@+id/add_btn"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="bottom"
+                        android:src="@mipmap/add_product_icon" />
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--  没有规格 + 有优惠 的商品样式  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/product_discount_btn_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{styleId == 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sale_quality"
+            app:layout_constraintTop_toBottomOf="@+id/sale_quality">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_discount_price_box"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/Font_F9230A_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="4dp"
+                    android:text="¥"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_discount_price"
+                    style="@style/Font_F9230A_16_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxWidth="60dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                    app:layout_constraintStart_toEndOf="@+id/textView8"
+                    app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+                <TextView
+                    android:id="@+id/product_original_price"
+                    style="@style/Font_909399_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_discount_price"
+                    app:layout_constraintStart_toEndOf="@+id/product_discount_price" />
+
+                <TextView
+                    android:id="@+id/discount_str"
+                    style="@style/Font_F9230A_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{product.discount_str,default=@string/default_value}"
+                    app:layout_constraintStart_toStartOf="@+id/textView8"
+                    app:layout_constraintTop_toBottomOf="@+id/product_discount_price" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_discount_price_box"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/product_discount_translation_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_discount_add_btn_box"
+                    app:layout_constraintEnd_toStartOf="@+id/product_discount_add_btn_box">
+
+                    <FrameLayout
+                        android:id="@+id/product_discount_reduce_btn_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="7.5dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="bottom"
+                            android:src="@mipmap/reduce_product_icon" />
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/product_discount_quantity"
+                        style="@style/Font_303133_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/product_discount_add_btn_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    android:paddingStart="7.5dp"
+                    android:paddingEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:id="@+id/product_discount_add_btn"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="bottom"
+                        android:src="@mipmap/add_product_icon" />
+
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--  有规格 的商品样式  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/product_specification_btn_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="@{styleId == 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sale_quality"
+            app:layout_constraintTop_toBottomOf="@+id/sale_quality">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_specification_price_box"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    style="@style/Font_303133_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="¥"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_specification_price"
+                    style="@style/Font_303133_16_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxWidth="70dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="@+id/textView6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_specification_price_box"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/product_specification_btn"
+                    style="@style/Font_FFFFFF_12"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/store_detail_shape_specification_btn_h"
+                    android:gravity="center"
+                    android:text="选规格"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--  有规格 + 有优惠 的商品样式  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/product_specification_discount_btn_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{styleId == 3 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sale_quality"
+            app:layout_constraintTop_toBottomOf="@+id/sale_quality">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_specification_discount_price_box"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    style="@style/Font_F9230A_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="4dp"
+                    android:text="¥"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/product_specification_discount_price"
+                    style="@style/Font_F9230A_16_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxWidth="60dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                    app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/product_specification_discount_original_price"
+                    style="@style/Font_909399_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="0"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_specification_discount_price"
+                    app:layout_constraintStart_toEndOf="@+id/product_specification_discount_price" />
+
+                <TextView
+                    android:id="@+id/product_specification_discount_str"
+                    style="@style/Font_F9230A_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{product.discount_str,default=@string/default_value}"
+                    app:layout_constraintStart_toStartOf="@+id/textView9"
+                    app:layout_constraintTop_toBottomOf="@+id/product_specification_discount_price" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_specification_discount_btn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_specification_discount_price_box"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/Font_FFFFFF_12"
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/store_detail_shape_specification_btn_h"
+                    android:gravity="center"
+                    android:text="选规格"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="evaluateInfo"
+            type="com.example.home_store_detail.viewmodel.StoreDetailVMH.EvaluateInfoBean" />
+    </data>
+
+    <com.example.home_store_detail.ui.view.StoreDetailNestedScrollViewH
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.StoreDetailEvaluateFrmH">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/decoration_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/evaluate_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/store_total_score"
+                        style="@style/Font_FC8200_40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="@{String.valueOf(evaluateInfo.store_score),default=@string/default_value}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        style="@style/Font_909399_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="商家评分"
+                        app:layout_constraintStart_toEndOf="@+id/store_total_score"
+                        app:layout_constraintTop_toTopOf="@+id/store_total_score" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        style="@style/Font_909399_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="3dp"
+                        android:text="口味"
+                        app:layout_constraintStart_toEndOf="@+id/textView4"
+                        app:layout_constraintTop_toTopOf="@+id/store_total_score" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        style="@style/Font_909399_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="包装"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                        app:layout_constraintStart_toEndOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        style="@style/Font_909399_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="配送满意度"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+                    <TextView
+                        android:id="@+id/store_smell_score"
+                        style="@style/Font_303133_13_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:letterSpacing="-0.06"
+                        android:text="@{String.valueOf(evaluateInfo.smell_score),default=@string/default_value}"
+                        app:layout_constraintBottom_toBottomOf="@+id/store_star_group"
+                        app:layout_constraintEnd_toEndOf="@+id/textView5"
+                        app:layout_constraintStart_toStartOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="@+id/store_star_group" />
+
+                    <TextView
+                        android:id="@+id/store_package_score"
+                        style="@style/Font_303133_13_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:letterSpacing="-0.06"
+                        android:text="@{String.valueOf(evaluateInfo.package_score),default=@string/default_value}"
+                        app:layout_constraintBottom_toBottomOf="@+id/store_smell_score"
+                        app:layout_constraintEnd_toEndOf="@+id/textView13"
+                        app:layout_constraintStart_toStartOf="@+id/textView13"
+                        app:layout_constraintTop_toTopOf="@+id/store_smell_score" />
+
+                    <TextView
+                        android:id="@+id/store_delivery_score"
+                        style="@style/Font_303133_13_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{evaluateInfo.delivery,default=@string/default_value}"
+                        app:layout_constraintBottom_toBottomOf="@+id/store_package_score"
+                        app:layout_constraintStart_toStartOf="@+id/textView14"
+                        app:layout_constraintTop_toTopOf="@+id/store_package_score" />
+
+                    <LinearLayout
+                        android:id="@+id/store_star_group"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="@+id/textView4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/color_F5F6F7" />
+
+            </LinearLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/evaluate_type_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="16dp"
+                app:flexWrap="wrap" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/evaluate_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:setStoreDetailViewInitHeight="@{true}"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+    </com.example.home_store_detail.ui.view.StoreDetailNestedScrollViewH>
+</layout>

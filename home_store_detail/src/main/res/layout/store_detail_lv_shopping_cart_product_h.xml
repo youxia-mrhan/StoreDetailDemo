@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="styleId"
+            type="int" />
+
+        <variable
+            name="shoppingCartProduct"
+            type="com.example.provider.home.storedetail.shoppingcart.bean.ShoppingCartProduct" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/product_title"
+                style="@style/Font_303133_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{shoppingCartProduct.title,default=@string/default_value}"
+                app:layout_constraintStart_toEndOf="@+id/product_img"
+                app:layout_constraintTop_toTopOf="@+id/product_img" />
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/Font_909399_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{shoppingCartProduct.widget,default=@string/default_value}"
+                app:layout_constraintStart_toStartOf="@+id/product_title"
+                app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/textView15"
+                app:layout_constraintTop_toBottomOf="@id/textView15">
+
+                <LinearLayout
+                    android:id="@+id/product_discount_price_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{styleId == 1 ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/Font_F9230A_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥" />
+
+                    <TextView
+                        android:id="@+id/product_discount_price"
+                        style="@style/Font_F9230A_18_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/default_value" />
+
+                    <TextView
+                        android:id="@+id/product_original_price"
+                        style="@style/Font_909399_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/default_value" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/product_price_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{styleId == 0 ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/Font_303133_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥" />
+
+                    <TextView
+                        android:id="@+id/product_price"
+                        style="@style/Font_303133_18_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:text="@string/default_value" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/reduce_btn_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@id/product_count"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                <ImageView
+                    android:id="@+id/reduce_btn"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@mipmap/reduce_product_icon" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/product_count"
+                style="@style/Font_303133_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(shoppingCartProduct.count),default=@string/default_value}"
+                app:layout_constraintBottom_toBottomOf="@+id/add_btn_box"
+                app:layout_constraintEnd_toStartOf="@+id/add_btn_box"
+                app:layout_constraintTop_toTopOf="@+id/add_btn_box" />
+
+            <FrameLayout
+                android:id="@+id/add_btn_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                <ImageView
+                    android:id="@+id/add_btn"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@mipmap/add_product_icon" />
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:background="@color/color_EEEEEE"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@id/add_btn_box" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>
